@@ -237,7 +237,7 @@ def load_portfolio():
         
         with col2_1:
             # Feature project
-            st.image("https://via.placeholder.com/800x250/ff9a8b/ffffff", use_column_width=True)
+            st.image("https://via.placeholder.com/800x250/ff9a8b/ffffff", use_container_width=True)
             
         with col2_2:
             # Stats cards

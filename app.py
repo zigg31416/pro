@@ -16,18 +16,18 @@ def local_css():
     <style>
     /* Main container styling */
     .main {
-        background-color: #f0f0f0;
+        background-color: #0f121a;
         padding: 0;
+        color: white;
     }
     
     /* Portfolio card styling */
     .portfolio-container {
-        background-color: white;
+        background-color: #0f121a;
         border-radius: 15px;
         padding: 20px;
         margin: 20px auto;
         max-width: 1200px;
-        box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.05);
     }
     
     /* Profile section styling */
@@ -47,6 +47,7 @@ def local_css():
         margin: 0 auto;
         overflow: hidden;
         border: 5px solid white;
+        text-align: center;
     }
     
     .name-text {
@@ -188,15 +189,6 @@ def local_css():
     """
     st.markdown(css, unsafe_allow_html=True)
 
-# Function to convert an image to base64 for embedding
-def img_to_base64(image_path):
-    img = Image.open(image_path)
-    import io
-    buffer = io.BytesIO()
-    img.save(buffer, format="PNG")
-    img_str = base64.b64encode(buffer.getvalue()).decode()
-    return f"data:image/png;base64,{img_str}"
-
 # Load the portfolio page
 def load_portfolio():
     # Main container
@@ -207,105 +199,67 @@ def load_portfolio():
     
     # Left column - Profile section
     with col1:
-        st.markdown("""
-        <div class="profile-section">
-            <div class="vertical-nav">
-                <div class="nav-item active-nav">Portfolio</div>
-                <div class="nav-item">Research</div>
-                <div class="nav-item">Clients</div>
-                <div class="nav-item">Podcast</div>
-            </div>
+        with st.container():
+            # Use Streamlit components instead of HTML
+            st.markdown('<div class="profile-section">', unsafe_allow_html=True)
             
-            <div style="padding: 20px 0 20px 40px;">
-                <div style="margin-bottom: 10px;">About Me</div>
-                <div class="profile-image-container">
-                    <!-- Add your profile image here -->
-                    <img src="https://via.placeholder.com/220" style="width: 100%; height: 100%; object-fit: cover;" />
-                </div>
-                
-                <div class="name-text">
-                    <div class="first-name">I'm,</div>
-                    Jon<br>Daniel
-                </div>
-                
-                <div class="email-button">
-                    inquiry@jondaniel.design
-                </div>
-                
-                <div class="round-badge">
-                    WE CODE WITH PASSION
-                </div>
-            </div>
-        </div>
-        """, unsafe_allow_html=True)
+            # Navigation
+            st.markdown('<div class="vertical-nav"><div class="nav-item active-nav">Portfolio</div><div class="nav-item">Research</div><div class="nav-item">Clients</div><div class="nav-item">Podcast</div></div>', unsafe_allow_html=True)
+            
+            # About Me section
+            st.markdown('<div style="padding: 20px 0 20px 40px;">', unsafe_allow_html=True)
+            st.markdown('<div style="margin-bottom: 10px;">About Me</div>', unsafe_allow_html=True)
+            
+            # Profile image container
+            st.markdown('<div class="profile-image-container">', unsafe_allow_html=True)
+            st.image("https://via.placeholder.com/220", width=220)
+            st.markdown('</div>', unsafe_allow_html=True)
+            
+            # Name text
+            st.markdown('<div class="name-text"><div class="first-name">I\'m,</div>Jon<br>Daniel</div>', unsafe_allow_html=True)
+            
+            # Email button
+            st.markdown('<div class="email-button">inquiry@jondaniel.design</div>', unsafe_allow_html=True)
+            
+            # Round badge
+            st.markdown('<div class="round-badge">WE CODE WITH PASSION</div>', unsafe_allow_html=True)
+            
+            st.markdown('</div>', unsafe_allow_html=True)
+            st.markdown('</div>', unsafe_allow_html=True)
     
     # Right column - Portfolio grid
     with col2:
         # Portfolio title
-        st.markdown('<h1 style="font-size: 5rem; font-weight: 900; margin: 20px 0;">Portfolio</h1>', unsafe_allow_html=True)
+        st.markdown('<h1 style="font-size: 5rem; font-weight: 900; margin: 20px 0; color: white;">Portfolio</h1>', unsafe_allow_html=True)
         
         # Top row of portfolio grid
         col2_1, col2_2 = st.columns([3, 1])
         
         with col2_1:
-            st.markdown("""
-            <div class="portfolio-item" style="height: 250px;">
-                <!-- Featured project image -->
-                <img src="https://via.placeholder.com/800x250/ff9a8b/ffffff" style="width: 100%; height: 100%; object-fit: cover;" />
-                <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">
-                    <div style="background-color: rgba(0,0,0,0.5); border-radius: 50%; width: 60px; height: 60px; display: flex; align-items: center; justify-content: center;">
-                        <span style="color: white; font-size: 24px;">▶</span>
-                    </div>
-                </div>
-                <div class="corner-icon">↗</div>
-            </div>
-            """, unsafe_allow_html=True)
+            # Feature project
+            st.image("https://via.placeholder.com/800x250/ff9a8b/ffffff", use_column_width=True)
             
         with col2_2:
-            st.markdown("""
-            <div class="stat-card mint-card">
-                <div class="stat-number">251</div>
-                <div class="stat-label">Projects</div>
-                <div class="corner-icon">↗</div>
-            </div>
-            """, unsafe_allow_html=True)
-            
-            st.markdown("""
-            <div class="stat-card purple-card" style="margin-top: 15px;">
-                <div class="stat-number">156</div>
-                <div class="stat-label">Awards</div>
-                <div class="corner-icon">↗</div>
-            </div>
-            """, unsafe_allow_html=True)
+            # Stats cards
+            st.markdown('<div class="stat-card mint-card"><div class="stat-number">251</div><div class="stat-label">Projects</div><div class="corner-icon">↗</div></div>', unsafe_allow_html=True)
+            st.markdown('<div class="stat-card purple-card" style="margin-top: 15px;"><div class="stat-number">156</div><div class="stat-label">Awards</div><div class="corner-icon">↗</div></div>', unsafe_allow_html=True)
         
         # Bottom row of portfolio grid
         col2_3, col2_4 = st.columns([1, 2])
         
         with col2_3:
-            st.markdown("""
-            <div class="stat-card dark-card">
-                <div style="display: flex; align-items: center; justify-content: center; height: 100%;">
-                    <span style="font-size: 42px;">⌘</span>
-                </div>
-                <div style="position: absolute; bottom: 20px; left: 20px;">Clients</div>
-                <div class="corner-icon">↗</div>
-            </div>
-            """, unsafe_allow_html=True)
+            # Clients card
+            st.markdown('<div class="stat-card dark-card"><div style="display: flex; align-items: center; justify-content: center; height: 100px;"><span style="font-size: 42px;">⌘</span></div><div style="position: absolute; bottom: 20px; left: 20px;">Clients</div><div class="corner-icon">↗</div></div>', unsafe_allow_html=True)
             
         with col2_4:
-            st.markdown("""
-            <div class="portfolio-grid" style="grid-template-columns: 1fr 1fr; height: 100%;">
-                <div class="portfolio-item" style="background-color: black; height: 150px; display: flex; align-items: center; justify-content: center;">
-                    <div style="width: 80px; height: 80px; background: linear-gradient(45deg, #ff6b6b, #6b77ff); border-radius: 50%;"></div>
-                    <div class="corner-icon" style="color: white;">↗</div>
-                </div>
-                <div class="stat-card orange-card">
-                    <div class="stat-number">172</div>
-                    <div class="stat-label">Global Design Awards</div>
-                    <div class="corner-icon">↗</div>
-                </div>
-            </div>
-            """, unsafe_allow_html=True)
+            # Global design awards section
+            col2_4_1, col2_4_2 = st.columns(2)
+            
+            with col2_4_1:
+                st.markdown('<div style="background-color: black; height: 100px; display: flex; align-items: center; justify-content: center; border-radius: 10px;"><div style="width: 60px; height: 60px; background: linear-gradient(45deg, #ff6b6b, #6b77ff); border-radius: 50%;"></div></div>', unsafe_allow_html=True)
+                
+            with col2_4_2:
+                st.markdown('<div class="stat-card orange-card" style="height: 100px;"><div class="stat-number">172</div><div class="stat-label">Global Design Awards</div><div class="corner-icon">↗</div></div>', unsafe_allow_html=True)
     
     # Close the main container
     st.markdown('</div>', unsafe_allow_html=True)
@@ -316,20 +270,7 @@ local_css()
 # Load the portfolio page
 load_portfolio()
 
-# Add instructions for customization
-with st.expander("🛠️ How to customize this portfolio"):
-    st.markdown("""
-    ## Customization Guide:
-    
-    1. **Profile Image**: Replace the placeholder image URL with your own image
-    2. **Personal Information**: Update name, email, and other personal details
-    3. **Stats**: Modify the numbers and labels in the stat cards
-    4. **Featured Work**: Add your own project images or videos
-    5. **Colors**: Customize the color scheme by changing the CSS color values
-    6. **Navigation**: Add or remove navigation items as needed
-    
-    To add your own images, you can:
-    1. Host them online and use the URL
-    2. Use Streamlit's file uploader to allow users to upload images
-    3. Include images in your project directory and load them using the PIL library
-    """)
+# Optional: Debugging information
+if st.checkbox("Show debugging info", value=False):
+    st.write("Streamlit version:", st.__version__)
+    st.write("To customize this portfolio, edit the code to replace placeholder content with your own.")

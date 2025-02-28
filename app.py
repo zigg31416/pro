@@ -191,7 +191,7 @@ with col2:
     
     with top_col1:
         # Feature image/project
-        st.image("https://via.placeholder.com/800x250/ff9a8b/ffffff", use_column_width=True)
+        st.image("https://via.placeholder.com/800x250/ff9a8b/ffffff", use_container_width=True)
     
     with top_col2:
         # Stats cards
